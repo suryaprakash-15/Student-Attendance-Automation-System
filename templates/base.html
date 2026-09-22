@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}AttendanceOS{% endblock %} | Student Attendance Automation System</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <a class="brand" href="{{ url_for('dashboard') }}"><span class="brand-mark">A</span><span>Attendance<span class="brand-accent">OS</span></span></a>
+      <p class="nav-label">Workspace</p>
+      <nav>
+        <a class="nav-item {% if request.endpoint == 'dashboard' %}active{% endif %}" href="{{ url_for('dashboard') }}"><span>▦</span> Dashboard</a>
+        <a class="nav-item {% if request.endpoint in ['students', 'add_student', 'edit_student'] %}active{% endif %}" href="{{ url_for('students') }}"><span>♙</span> Students</a>
+        <a class="nav-item {% if request.endpoint == 'attendance' %}active{% endif %}" href="{{ url_for('attendance') }}"><span>✓</span> Mark Attendance</a>
+        <a class="nav-item {% if request.endpoint == 'reports' %}active{% endif %}" href="{{ url_for('reports') }}"><span>▤</span> Reports</a>
+      </nav>
+      <p class="nav-label">Account</p>
+      <nav>
+        <a class="nav-item {% if request.endpoint == 'profile' %}active{% endif %}" href="{{ url_for('profile') }}"><span>⚙</span> Profile</a>
+        <a class="nav-item" href="{{ url_for('logout') }}"><span>↪</span> Logout</a>
+      </nav>
+      <div class="sidebar-foot"><strong>AttendanceOS</strong><br><small>Built for smarter classrooms</small></div>
+    </aside>
+    <main class="main-content">
+      <header class="topbar"><div><span class="eyebrow">COLLEGE ADMINISTRATION</span><h1>{% block page_heading %}Overview{% endblock %}</h1></div><div class="user-chip"><span class="avatar">{{ session.get('full_name', 'A')[0] }}</span><span><b>{{ session.get('full_name', 'Admin') }}</b><small>{{ session.get('role', 'Teacher') }}</small></span></div></header>
+      <section class="page-body">
+        {% with messages = get_flashed_messages(with_categories=true) %}{% if messages %}<div class="alerts">{% for category, message in messages %}<div class="alert {{ category }}">{{ message }}<button class="alert-close" type="button">×</button></div>{% endfor %}</div>{% endif %}{% endwith %}
+        {% block content %}{% endblock %}
+      </section>
+    </main>
+  </div>
+  <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>
