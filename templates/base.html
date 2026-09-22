@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>{% block title %}AttendanceOS{% endblock %} | Student Attendance Automation System</title>
+  <title>{% block title %}CIET Attendance{% endblock %} | Chalapathi Institute of Engineering & Technology</title>
   <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
@@ -10,7 +10,7 @@
 <body>
   <div class="app-shell">
     <aside class="sidebar">
-      <a class="brand" href="{{ url_for('dashboard') }}"><span class="brand-mark">A</span><span>Attendance<span class="brand-accent">OS</span></span></a>
+      <a class="brand" href="{{ url_for('dashboard') }}"><img class="college-logo" src="{{ url_for('static', filename='images/college-logo.jpg') }}" alt="CIET logo"><span><b>CIET</b><small>Attendance Portal</small></span></a>
       <p class="nav-label">Workspace</p>
       <nav>
         <a class="nav-item {% if request.endpoint == 'dashboard' %}active{% endif %}" href="{{ url_for('dashboard') }}"><span>▦</span> Dashboard</a>
@@ -23,7 +23,7 @@
         <a class="nav-item {% if request.endpoint == 'profile' %}active{% endif %}" href="{{ url_for('profile') }}"><span>⚙</span> Profile</a>
         <a class="nav-item" href="{{ url_for('logout') }}"><span>↪</span> Logout</a>
       </nav>
-      <div class="sidebar-foot"><strong>AttendanceOS</strong><br><small>Built for smarter classrooms</small></div>
+      <div class="sidebar-foot"><strong>Chalapathi Institute</strong><br><small>Engineering & Technology · Guntur</small></div>
     </aside>
     <main class="main-content">
       <header class="topbar"><div><span class="eyebrow">COLLEGE ADMINISTRATION</span><h1>{% block page_heading %}Overview{% endblock %}</h1></div><div class="user-chip"><span class="avatar">{{ session.get('full_name', 'A')[0] }}</span><span><b>{{ session.get('full_name', 'Admin') }}</b><small>{{ session.get('role', 'Teacher') }}</small></span></div></header>
