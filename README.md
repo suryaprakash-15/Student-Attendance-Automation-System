@@ -65,6 +65,17 @@ python app.py
 
 Open `http://127.0.0.1:5000` in your browser. The SQLite database and demo records are created automatically on first launch.
 
+## Publish A Live Demo
+
+GitHub displays the source code but does not run Flask applications. To get a public website, deploy this repository on [Render](https://render.com):
+
+1. Create a free Render account and choose **New > Web Service**.
+2. Connect `suryaprakash-15/Student-Attendance-Automation-System`.
+3. Use these settings: Runtime `Python`, build command `pip install -r requirements.txt`, start command `gunicorn app:app`.
+4. Create the service and open the generated `onrender.com` URL.
+
+The included `render.yaml` can also configure these settings automatically. This demo uses SQLite; a hosted production system should use PostgreSQL because temporary hosted files can be reset during redeploys.
+
 ## Demo Login
 
 This local demo account is safe for development only:
